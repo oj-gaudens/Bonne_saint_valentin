@@ -1,13 +1,17 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = innerWidth;
-canvas.height = innerHeight;
+function resize(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
 
 const symbols = "0123456789❤";
 const fontSize = 18;
-const cols = canvas.width / fontSize;
-const drops = Array(Math.floor(cols)).fill(1);
+let cols = Math.floor(canvas.width / fontSize);
+let drops = Array(cols).fill(1);
 
 function rain(){
   ctx.fillStyle = "rgba(0,0,0,0.08)";
@@ -24,8 +28,8 @@ function rain(){
 }
 setInterval(rain,33);
 
-// TEXT EN CHIFFRES
-// TEXT EN CHIFFRES
+
+// 💖 MESSAGE EN CHIFFRES
 const msg = [
 "888888   666666   777777   777777   888888        555555   444444   111111   777777   888888",
 "88   88  66       77   77  77   77  88   88       55       44  44      11    77   77  88   88",
@@ -40,9 +44,9 @@ const msg = [
 "77   77  111111    777777   88   88  77   77       888888   666666   777777   88       111111   77       88       111111   77   77"
 ];
 
-
 const el = document.getElementById("message");
 let i=0;
+
 setTimeout(()=>{
   const it = setInterval(()=>{
     if(i<msg.length){
