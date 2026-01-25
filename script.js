@@ -10,23 +10,30 @@ window.addEventListener("resize", resize);
 
 const symbols = "0123456789❤";
 const fontSize = 18;
+
 let cols = Math.floor(canvas.width / fontSize);
 let drops = Array(cols).fill(1);
 
 function rain(){
   ctx.fillStyle = "rgba(0,0,0,0.08)";
   ctx.fillRect(0,0,canvas.width,canvas.height);
+
   ctx.fillStyle = "#ff4fd8";
   ctx.font = fontSize+"px monospace";
 
   drops.forEach((y,i)=>{
     const t = symbols[Math.floor(Math.random()*symbols.length)];
     ctx.fillText(t,i*fontSize,y*fontSize);
-    if(y*fontSize>canvas.height && Math.random()>0.97) drops[i]=0;
+
+    if(y*fontSize>canvas.height && Math.random()>0.97){
+      drops[i]=0;
+    }
     drops[i]++;
   });
 }
+
 setInterval(rain,33);
+
 
 
 // 💖 MESSAGE EN CHIFFRES
@@ -52,6 +59,8 @@ setTimeout(()=>{
     if(i<msg.length){
       el.textContent += msg[i]+"\n";
       i++;
-    } else clearInterval(it);
+    } else {
+      clearInterval(it);
+    }
   },200);
 },3000);
